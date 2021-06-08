@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.model.Benzenoid;
 import com.example.model.BenzenoidData;
+import com.example.model.IRSpectrumResult;
 import com.example.service.BenzenoidService;
 import com.example.utils.Operator;
 
@@ -117,6 +118,73 @@ public class BenzenoidController {
 		nbParameters++;
 
 		return service.findBenzenoids(columns, operators, values);
+	}
+
+	@PostMapping("/find_ir")
+	public List<IRSpectrumResult> findIRSpectra(@RequestBody BenzenoidData benzenoidData) {
+
+		System.out.println(benzenoidData.getId() + " " + benzenoidData.getName() + " " + benzenoidData.getNbHexagons()
+				+ " " + benzenoidData.getNbCarbons() + " " + benzenoidData.getNbHydrogens() + " "
+				+ benzenoidData.getIrregularity());
+
+		System.out.println(benzenoidData.getOperatorId() + " " + benzenoidData.getOperatorName() + " "
+				+ benzenoidData.getOperatorHexagons() + " " + benzenoidData.getOperatorCarbons() + " "
+				+ benzenoidData.getOperatorHydrogens() + " " + benzenoidData.getOperatorIrregularity());
+
+		int nbParameters = countParameters(benzenoidData);
+
+		System.out.println(nbParameters + " parameters");
+
+		String[] columns = new String[nbParameters];
+		Operator[] operators = new Operator[nbParameters];
+		Object[] values = new Object[nbParameters];
+
+		int index = 0;
+
+		if (benzenoidData.getId() != -1) {
+			columns[index] = "id";
+			operators[index] = Operator.getOperator(benzenoidData.getOperatorId());
+			values[index] = benzenoidData.getId();
+			index++;
+		}
+
+		if (!benzenoidData.getName().equals("none")) {
+			columns[index] = "name";
+			operators[index] = Operator.getOperator(benzenoidData.getOperatorName());
+			values[index] = benzenoidData.getName();
+			index++;
+		}
+
+		if (benzenoidData.getNbHexagons() > 0) {
+			columns[index] = "nbHexagons";
+			operators[index] = Operator.getOperator(benzenoidData.getOperatorHexagons());
+			values[index] = benzenoidData.getNbHexagons();
+			index++;
+		}
+
+		if (benzenoidData.getNbCarbons() > 0) {
+			columns[index] = "nbCarbons";
+			operators[index] = Operator.getOperator(benzenoidData.getOperatorCarbons());
+			values[index] = benzenoidData.getNbCarbons();
+			index++;
+		}
+
+		if (benzenoidData.getNbHydrogens() > 0) {
+			columns[index] = "nbHydrogens";
+			operators[index] = Operator.getOperator(benzenoidData.getOperatorHydrogens());
+			values[index] = benzenoidData.getNbHydrogens();
+			index++;
+		}
+
+		if (benzenoidData.getIrregularity() >= 0.0) {
+			columns[index] = "irregularity";
+			operators[index] = Operator.getOperator(benzenoidData.getOperatorIrregularity());
+			values[index] = benzenoidData.getIrregularity();
+			index++;
+		}
+		nbParameters++;
+
+		return service.findIRSpectra(columns, operators, values);
 	}
 
 	private int countParameters(BenzenoidData benzenoidData) {

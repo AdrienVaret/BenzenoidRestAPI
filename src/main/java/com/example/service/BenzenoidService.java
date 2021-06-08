@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.model.Benzenoid;
+import com.example.model.IRSpectrumResult;
 import com.example.utils.Operator;
 
 public interface BenzenoidService {
@@ -19,4 +20,6 @@ public interface BenzenoidService {
 	List<Benzenoid> findAll();
 
 	List<Benzenoid> findBenzenoids(String[] columns, Operator[] operators, Object[] params);
+
+	List<IRSpectrumResult> findIRSpectra(String[] columns, Operator[] operators, Object[] params);
 }

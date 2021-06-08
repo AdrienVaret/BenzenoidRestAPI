@@ -3,19 +3,20 @@ package com.example.model;
 public class Benzenoid {
 
 	private Long id;
-	
+
 	private String name;
-	
+
 	private int nbHexagons;
-	
+
 	private int nbCarbons;
-	
+
 	private int nbHydrogens;
-	
+
 	private double irregularity;
 
-	public Benzenoid() { }
-	
+	public Benzenoid() {
+	}
+
 	public Benzenoid(Long id, String name, int nbHexagons, int nbCarbons, int nbHydrogens, double irregularity) {
 
 		this.id = id;

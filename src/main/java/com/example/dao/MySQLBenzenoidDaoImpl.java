@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.model.Benzenoid;
+import com.example.model.IRSpectrumResult;
 import com.example.utils.Operator;
 
 @Repository("mysql")
@@ -116,6 +117,47 @@ public class MySQLBenzenoidDaoImpl implements BenzenoidDAO {
 			Double irregularity = resultSet.getDouble("irregularity");
 
 			return new Benzenoid(id, name, nbHexagons, nbCarbons, nbHydrogens, irregularity);
+		});
+	}
+
+	@Override
+	public List<IRSpectrumResult> findIRSpectra(String[] columns, Operator[] operators, Object[] params) {
+
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT * FROM benzenoid b, gaussian_result r WHERE b.id = r.id_molecule");
+
+		for (int i = 0; i < columns.length; i++) {
+
+			String column = columns[i];
+			Operator operator = operators[i];
+
+			String condition;
+
+			condition = " AND " + column + " " + Operator.getOperatorString(operator) + " " + params[i].toString()
+					+ " ";
+
+			query.append(condition);
+		}
+
+		System.out.println(query);
+
+		return jdbcTemplate.query(query.toString(), (resultSet, i) -> {
+
+			Long id = resultSet.getLong("id");
+			String name = resultSet.getString("name");
+			int nbHexagons = resultSet.getInt("nbHexagons");
+			int nbCarbons = resultSet.getInt("nbCarbons");
+			int nbHydrogens = resultSet.getInt("nbHydrogens");
+			Double irregularity = resultSet.getDouble("irregularity");
+
+			Long idSpectrum = resultSet.getLong("id_gaussian_result");
+			String frequencies = resultSet.getString("frequencies");
+			String intensities = resultSet.getString("intensities");
+			String finalEnergies = resultSet.getString("final_energies");
+			double zeroPointEnergy = resultSet.getDouble("zero_point_energy");
+
+			return new IRSpectrumResult(id, name, nbHexagons, nbCarbons, nbHydrogens, irregularity, idSpectrum,
+					frequencies, intensities, finalEnergies, zeroPointEnergy);
 		});
 	}
 

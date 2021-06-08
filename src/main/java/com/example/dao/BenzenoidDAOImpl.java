@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import com.example.model.Benzenoid;
+import com.example.model.IRSpectrumResult;
 import com.example.utils.Operator;
 
 @Repository("memoire")
@@ -49,6 +50,12 @@ public class BenzenoidDAOImpl implements BenzenoidDAO {
 
 	@Override
 	public List<Benzenoid> findBenzenoids(String[] columns, Operator[] operators, Object[] params) {
+		return null;
+	}
+
+	@Override
+	public List<IRSpectrumResult> findIRSpectra(String[] columns, Operator[] operators, Object[] params) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

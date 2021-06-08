@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.BenzenoidDAO;
 import com.example.model.Benzenoid;
+import com.example.model.IRSpectrumResult;
 import com.example.utils.Operator;
 
 @Service
@@ -46,6 +47,11 @@ public class BenzenoidServiceImpl implements BenzenoidService {
 	@Override
 	public List<Benzenoid> findBenzenoids(String[] columns, Operator[] operators, Object[] params) {
 		return benzenoidDAO.findBenzenoids(columns, operators, params);
+	}
+
+	@Override
+	public List<IRSpectrumResult> findIRSpectra(String[] columns, Operator[] operators, Object[] params) {
+		return benzenoidDAO.findIRSpectra(columns, operators, params);
 	}
 
 }
