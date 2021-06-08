@@ -23,21 +23,6 @@ public class BenzenoidManagementApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-//		benzenoidDAO.save(new Benzenoid(3L, "test", 5, 10, 10, 0.0));
-//		benzenoidDAO.save(new Benzenoid(2L, "test2", 5, 10, 10, 0.0));
-//
-//		Benzenoid benzenoidDB = benzenoidDAO.findById(2L).get();
-//
-//		System.out.println(benzenoidDB.getName());
-//
-//		benzenoidDB.setName("updated name");
-//
-//		benzenoidDAO.update(benzenoidDB);
-//
-//		Benzenoid benzenoidDB2 = benzenoidDAO.findById(2L).get();
-//
-//		System.out.println(benzenoidDB2.getName());
-
 	}
 
 }
