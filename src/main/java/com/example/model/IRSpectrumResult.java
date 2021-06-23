@@ -82,4 +82,13 @@ public class IRSpectrumResult {
 	public double getZeroPointEnergy() {
 		return zeroPointEnergy;
 	}
+
+	@Override
+	public String toString() {
+		return "IRSpectrumResult [id=" + id + ", name=" + name + ", nbHexagons=" + nbHexagons + ", nbCarbons="
+				+ nbCarbons + ", nbHydrogens=" + nbHydrogens + ", irregularity=" + irregularity + ", idSpectrum="
+				+ idSpectrum + ", frequencies=" + frequencies + ", intensities=" + intensities + ", finalEnergies="
+				+ finalEnergies + ", zeroPointEnergy=" + zeroPointEnergy + "]";
+	}
+
 }
