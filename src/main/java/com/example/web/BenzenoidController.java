@@ -26,8 +26,9 @@ public class BenzenoidController {
 	BenzenoidService service;
 
 	@GetMapping("/hello")
-	public void greeting() {
+	public String greeting() {
 		System.out.println("Hello world");
+		return "Hello world";
 	}
 
 	@GetMapping("/")
