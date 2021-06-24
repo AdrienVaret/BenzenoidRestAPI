@@ -25,6 +25,11 @@ public class BenzenoidController {
 	@Autowired
 	BenzenoidService service;
 
+	@GetMapping("/hello")
+	public void greeting() {
+		System.out.println("Hello world");
+	}
+
 	@GetMapping("/")
 	public List<Benzenoid> index() {
 		return service.findAll();
